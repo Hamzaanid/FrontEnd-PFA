@@ -6,9 +6,9 @@ import { purple } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
-    primary: {
-      main: '#f4f6f8'
-    },
+    // primary: {
+    //   main: '#f4f6f8'
+    // },
     secondary: purple
   },
   typography:{
@@ -21,10 +21,10 @@ const theme = createTheme({
 });
 function App() {
   return (
-    <RouterProvider router={router} />
-    // <ThemeProvider theme={theme}>
-    //     
-    // </ThemeProvider>
+    
+    <ThemeProvider theme={theme}>
+        <RouterProvider router={router} />
+    </ThemeProvider>
   );
 }
 

@@ -9,7 +9,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import { useLocation } from 'react-router-dom';
-import logoEnsias from './../assets/logoEnsias.png';
+import logoEnsias from './../../assets/logoEnsias_canva.png';
 import {
   SubjectOutlined,
   LocalParkingRounded,
@@ -17,6 +17,7 @@ import {
   AnnouncementRounded,
   AddBoxRounded,
   DoNotDisturbOnRounded,
+  AssignmentLate
 } from "@mui/icons-material";
 
 
@@ -32,33 +33,38 @@ export default function SideBar({
   const menuItem = [
     {
       text: "Home",
-      icon: <SubjectOutlined color="secondary" />,
+      icon: <SubjectOutlined color="dark" />,
       path: "/Home",
     },
     {
       text: "Service Parking",
-      icon: <LocalParkingRounded color="secondary" />,
+      icon: <LocalParkingRounded color="dark" />,
       path: "/PageParking",
     },
     {
       text: "Service Internat",
-      icon: <LocationCityRounded color="secondary" />,
+      icon: <LocationCityRounded color="dark" />,
       path: "/PageInternat",
     },
     {
+      text: "Reclamation",
+      icon: <DoNotDisturbOnRounded color="dark" />,
+      path: "/pageReclamation",
+    },
+    {
+      text: "ListeReclamations",
+      icon: <AssignmentLate color="dark" />,
+      path: "/ListeReclamations",
+    },
+    {
       text: "consulter Annoncement",
-      icon: <AnnouncementRounded color="secondary" />,
+      icon: <AnnouncementRounded color="dark" />,
       path: "/PageAnnonce",
     },
     {
       text: "Annoncement",
-      icon: <AddBoxRounded color="secondary" />,
+      icon: <AddBoxRounded color="dark" />,
       path: "/PageAddAnnonce",
-    },
-    {
-      text: "Reclamation",
-      icon: <DoNotDisturbOnRounded color="secondary" />,
-      path: "/pageReclamation",
     },
   ];
   const drawer = (
@@ -67,7 +73,7 @@ export default function SideBar({
         <ListItem>
           <Box
           >
-            <Card sx={{mx:6, maxWidth: drawerWidth }}>
+            <Card sx={{mx:6, maxWidth: drawerWidth,border:"none" }}>
               <CardMedia sx={{ maxWidth: drawerWidth }}
                 component="img"
                 src={logoEnsias}
@@ -87,7 +93,8 @@ export default function SideBar({
             }}
           >
             <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.text}></ListItemText>
+            <ListItemText primary={item.text} sx={
+              { color:"black"}}></ListItemText>
           </ListItem>
         ))}
       </List>

@@ -29,13 +29,13 @@ export default function Appbar({ drawerwidth, handleDrawerToggle }) {
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
+                        sx={{ mr: 2, display: { sm: 'none' },color:"black" }}
                     >
                         <MenuIcon />
                     </IconButton>
 
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        To Do App
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1,color:"black"}}>
+                        Ensias
                     </Typography>
                     <IconButton
                         size="large"
@@ -43,6 +43,7 @@ export default function Appbar({ drawerwidth, handleDrawerToggle }) {
                         aria-controls="menu-appbar"
                         aria-haspopup="true"
                         color="inherit"
+                        sx={{ color:"black"}}
                     >
                         <AccountCircle />
                     </IconButton>

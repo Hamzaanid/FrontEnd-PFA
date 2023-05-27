@@ -2,13 +2,15 @@ import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../pages/error-page.js";
 
 import MapPage from "../pages/Map-page.js";
-import PageAnnonce from "../pages/Page-ConsultAnnonce.js";
-import PageAddAnnonce from "../pages/Page-addAnnonce.js";
-import PageInternat from "../pages/Page-Internat.js";
-import PageReclamation from "../pages/Page-Reclamation.js";
-import PageParking from "../pages/Page-Parking.js";
+import PageAnnonce from "../pages/annoncements/Page-ConsultAnnonce.js";
+import PageAddAnnonce from "../pages/annoncements/Page-addAnnonce.js";
+import PageInternat from "../pages/internat/Page-Internat.js";
+import PageReclamation from "../pages/reclamation/Page-Reclamation.js";
+import PageListReclamation from "../pages/reclamation/Page-list-reclamation.js";
 
-import Layout from "../Layouts/layout.js";
+import PageParking from "../pages/parking/Page-Parking.js";
+
+import Layout from "../Layouts/user/layout.js";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +36,11 @@ const router = createBrowserRouter([
         path: "pageReclamation",
         element: <PageReclamation />,
       },
+      {
+        path: "ListeReclamations",
+        element: <PageListReclamation />,
+      },
+      
       {
         path: "PageParking",
         element: <PageParking />,

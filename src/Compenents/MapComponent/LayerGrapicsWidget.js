@@ -1,4 +1,5 @@
-// Layer.js - Composant pour récupérer les données via l'API REST et créer la couche correspondante
+// cette page pour integrer les donner de chaque layer (internat,class,...)
+
 import  React,{ useEffect,useState } from "react";
 import Graphic from "@arcgis/core/Graphic";
 import Popup from "./../widget/popup.js";

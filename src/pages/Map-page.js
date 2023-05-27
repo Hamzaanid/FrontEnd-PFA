@@ -7,7 +7,7 @@ import MapView from "@arcgis/core/views/MapView";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer.js";
 
 
-import LayerCompenent from "../Compenents/MapComponent/LayerCompenent.js";
+// import LayerCompenent from "../Compenents/MapComponent/LayerCompenent.js";
 import LayerGraphicsWidgets from "../Compenents/MapComponent/LayerGrapicsWidget.js";
 
 function MapService() {
@@ -49,12 +49,13 @@ function MapService() {
 
   return (
     <div ref={mapDiv} style={{ height: "100vh", width: "100%" }}>
-      {View && <LayerCompenent View={View} />
+      {View 
+      // && <LayerCompenent View={View} />
        && 
        <LayerGraphicsWidgets  View={View}/>
        }
     </div>
   );
 }
-
+//jjj
 export default MapService;

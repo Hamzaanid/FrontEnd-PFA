@@ -1,3 +1,4 @@
+// pour colorer une zone 
 import { useEffect } from "react";
 import Graphic from "@arcgis/core/Graphic";
 import Polygon from "@arcgis/core/geometry/Polygon.js";
