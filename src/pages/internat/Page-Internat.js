@@ -1,93 +1,80 @@
-import React from "react";
-import { useState } from "react";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-// import { makeStyles } from 'tss-react/mui';
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import AccountCircle from "@mui/icons-material/AccountCircle";
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import BarrRcherche from "../../Compenents/internat/recherche.js"
+import ShapCard from "../../Compenents/internat/statistic.js"
 
-// const useStyles = makeStyles(() => {
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
 
-//     return {
-//         btn: {
-//             backgroundColor: 'violet',
-//             fontSize: 60,
-//             '&:hover': {
-//                 backgroundColor: 'blue',
-//             },
-//             p:2,
-//         }
-//     }
-// });
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          {children}
+        </Box>
+      )}
+    </div>
+  );
+}
 
-export default function PageReclamation() {
-  // const navigate = useNavigate()
-  // const classes = useStyles();
-  const [title, setTitle] = useState("");
-  const [Details, setDetails] = useState("");
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
-    if (title && Details) {
-      const Reclamation = {
-        title: title,
-        details: Details,
-      };
-      console.log(Reclamation);
-    }
+export default function BasicTabs() {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
 
   return (
-    <Container>
-      <Typography
-        variant="h6"
-        color="textSecondary"
-        component="h2"
-        gutterBottom
-      >
-        Reserver un chambre
-      </Typography>
-      <Box
-        component="form"
-        sx={{
-          //'& > :not(style)': { m: 1, width: '60%' },
-          ".MuiTextField-root": { m: 1, width: "95%" },
-          ".MuiButton-root": { m: 1, px: 1 },
-        }}
-        noValidate
-        autoComplete="off"
-        onSubmit={handleSubmit}
-      >
-        <TextField
-          onChange={(e) => {
-            setTitle(e.target.value);
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ 
+        borderBottom: 1,
+         borderColor: 'divider' }}>
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tab 
+          label="Cherche"
+           {...a11yProps(0)} 
+           sx={{
+            backgroundColor: value === 0 ? 'black' : 'initial',
           }}
-          label="Reclamation Title"
-          color="secondary"
-          variant="outlined"
-          fullWidth
-          required
-          size="small"
-        ></TextField>
-        <TextField
-          size="small"
-          onChange={(e) => {
-            setDetails(e.target.value);
+          />
+          <Tab 
+          label="statistique"
+           {...a11yProps(1)}
+           sx={{
+            backgroundColor: value === 1 ? 'black' : 'initial'
           }}
-          label="Details"
-          color="secondary"
-          variant="outlined"
-          multiline
-          fullWidth
-          required
-        ></TextField>
-        <Button size="small" type="submit" color="primary" variant="contained">
-          envoyer
-        </Button>
+           />
+        </Tabs>
       </Box>
-    </Container>
+      <TabPanel value={value} index={0}>
+        <BarrRcherche />
+      </TabPanel>
+
+      <TabPanel value={value} index={1}>
+        <ShapCard />
+      </TabPanel>
+    </Box>
   );
 }

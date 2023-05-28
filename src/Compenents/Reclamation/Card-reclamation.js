@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
+import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
@@ -23,7 +23,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard({title,Details}) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -31,7 +31,7 @@ export default function RecipeReviewCard() {
   };
 
   return (
-    <Card>
+    <Card sx={{m:1}}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -39,7 +39,8 @@ export default function RecipeReviewCard() {
           </Avatar>
         }
         action={
-          <ExpandMore
+          <Box>
+            <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
             aria-expanded={expanded}
@@ -47,22 +48,21 @@ export default function RecipeReviewCard() {
           >
             <ExpandMoreIcon />
           </ExpandMore>
+          <IconButton aria-label="Traiter" sx={{marginLeft: "auto",color:"black"}}>
+          <TaskAltIcon />
+        </IconButton>
+          </Box>
+          
         }
-        title="first reclamation click on expand for more details"
+        title={title}
         subheader="September 14, 2016"
       />
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and
-            set aside for 10 minutes.
+            {Details}
           </Typography>
         </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="Traiter" sx={{marginLeft: "auto"}}>
-            <TaskAltIcon />
-          </IconButton>
-        </CardActions>
       </Collapse>
     </Card>
   );

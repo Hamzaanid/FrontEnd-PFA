@@ -9,7 +9,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import { useLocation } from 'react-router-dom';
-import logoEnsias from './../../assets/logoEnsias_canva.png';
+import logoEnsias from './../../assets/final.png';
 import {
   SubjectOutlined,
   LocalParkingRounded,
@@ -17,7 +17,8 @@ import {
   AnnouncementRounded,
   AddBoxRounded,
   DoNotDisturbOnRounded,
-  AssignmentLate
+  AssignmentLate,
+  HomeWork
 } from "@mui/icons-material";
 
 
@@ -42,10 +43,16 @@ export default function SideBar({
       path: "/PageParking",
     },
     {
+      text: "residence",
+      icon: <HomeWork color="dark" />,
+      path: "/residence",
+    },
+    {
       text: "Service Internat",
       icon: <LocationCityRounded color="dark" />,
       path: "/PageInternat",
     },
+    
     {
       text: "Reclamation",
       icon: <DoNotDisturbOnRounded color="dark" />,
@@ -70,11 +77,12 @@ export default function SideBar({
   const drawer = (
     <div>
       <List>
-        <ListItem>
+        <ListItem dense>
           <Box
+          sx={{border:"none", mb:2}}
           >
-            <Card sx={{mx:6, maxWidth: drawerWidth,border:"none" }}>
-              <CardMedia sx={{ maxWidth: drawerWidth }}
+            <Card sx={{maxWidth: 70,border:"none" }}>
+              <CardMedia sx={{ maxWidth: 70,border:"none" }}
                 component="img"
                 src={logoEnsias}
                 alt="My Image"
@@ -84,6 +92,7 @@ export default function SideBar({
         </ListItem>
         {menuItem.map((item) => (
           <ListItem
+          dense
           sx={{backgroundColor: location.pathname === item.path ? "#384358" : ""}}
             button
             key={item.text}
@@ -92,9 +101,8 @@ export default function SideBar({
               return navigate(item.path);
             }}
           >
-            <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.text} sx={
-              { color:"black"}}></ListItemText>
+            <ListItemIcon sx={{color:"#fe1929"}}>{item.icon}</ListItemIcon>
+            <ListItemText primary={item.text} ></ListItemText>
           </ListItem>
         ))}
       </List>
@@ -118,7 +126,7 @@ export default function SideBar({
 
       PaperProps={{
         sx: {
-          backgroundColor: "#003041", //424242  424F60  4f372d
+          backgroundColor: "#000000", //424242  424F60  4f372d
           color: "common.white",
           width: 280,
         },

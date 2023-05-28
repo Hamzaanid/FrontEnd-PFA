@@ -1,71 +1,78 @@
 import React from "react";
 import { useState } from "react";
-import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
+import MenuItem from "@mui/material/MenuItem";
+
+const none = [
+  {
+    value: "chambre",
+    label: "chambre",
+  },
+  {
+    value: "etudiant",
+    label: "étudiant",
+  }
+];
 
 export default function PageReclamation() {
-  // const navigate = useNavigate()
-  const [title, setTitle] = useState("");
-  const [Details, setDetails] = useState("");
+  const [typeCherche, setTypeCherche] = useState("etudiant");
+  const [numOUnom, setnumOUnom] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (title && Details) {
-      const Reclamation = {
-        title: title,
-        details: Details,
+    if (typeCherche && numOUnom) {
+      const recherche = {
+        typeCherche: typeCherche,
+        numOUnom: numOUnom,
       };
-      console.log(Reclamation);
+      console.log(recherche);
     }
   };
 
   return (
     <Container>
-      <Typography
-        variant="h6"
-        color="textSecondary"
-        component="h2"
-        gutterBottom
-      >
-        Add Reclamation
-      </Typography>
       <Box
         component="form"
         sx={{
-          //'& > :not(style)': { m: 1, width: '60%' },
+          // '& > :not(style)': { m: 1, width: '60%' },
           ".MuiTextField-root": { m: 1 },
           ".MuiButton-root": { m: 1, px: 1 },
-          mr: { lg: "50%", sm: "35%", xs: 0 },
+          mr: { sm: "35%", xs: 0, lg: "50%" },
         }}
         noValidate
         autoComplete="off"
         onSubmit={handleSubmit}
       >
+        
         <TextField
-          size="small"
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-          label="Reclamation Title"
-          color="secondary"
-          variant="outlined"
           fullWidth
-          required
-        ></TextField>
+          size="small"
+          select
+          label="charcher par"
+          value={typeCherche}
+          onChange={(e) => {
+            setTypeCherche(e.target.value);
+          }}
+        >
+          {none.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
         <TextField
           size="small"
           onChange={(e) => {
-            setDetails(e.target.value);
+            setnumOUnom(e.target.value);
           }}
-          label="Details"
+          label={typeCherche === "chambre" ? "numero de chambre" : "nom étudiant"}
           color="secondary"
           variant="outlined"
           multiline
-          rows={3}
           fullWidth
           required
         ></TextField>
@@ -77,7 +84,7 @@ export default function PageReclamation() {
           }}
           variant="contained"
         >
-          envoyer
+          chercher
         </Button>
       </Box>
     </Container>

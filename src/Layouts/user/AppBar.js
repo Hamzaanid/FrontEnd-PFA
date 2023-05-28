@@ -20,7 +20,7 @@ export default function Appbar({ drawerwidth, handleDrawerToggle }) {
                 sx={{
                     width: {sm: `calc(100% - ${drawerwidth}px)`},
                     ml: { sm: `${drawerwidth}px` },
-                    backgroundColor: "#cc2a36", //B51A2B E4665C
+                    backgroundColor: "#FF2424", //B51A2B E4665C
                 }}
             >
                 <Toolbar>
