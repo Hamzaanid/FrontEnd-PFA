@@ -3,6 +3,7 @@ import router from './Routes/mainRoutes.js';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from "@emotion/react";
 import { purple } from '@mui/material/colors';
+import { ContextProvider } from "./Compenents/Auth/auth.js";
 
 const theme = createTheme({
   palette: {
@@ -21,10 +22,12 @@ const theme = createTheme({
 });
 function App() {
   return (
+    <ContextProvider>
+      <ThemeProvider theme={theme}>
+          <RouterProvider router={router} />
+      </ThemeProvider>
+    </ContextProvider>
     
-    <ThemeProvider theme={theme}>
-        <RouterProvider router={router} />
-    </ThemeProvider>
   );
 }
 

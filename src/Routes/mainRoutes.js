@@ -11,15 +11,17 @@ import PageReclamation from "../pages/reclamation/Page-Reclamation.js";
 import PageListReclamation from "../pages/reclamation/Page-list-reclamation.js";
 import PageParking from "../pages/parking/Page-Parking.js";
 
+import RequireAuth from "../Compenents/Auth/requireAuth.js";
 import Layout from "../Layouts/user/layout.js";
+import LoginForm from "../pages/Authentication/Login.js";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <RequireAuth><Layout /></RequireAuth>,
     children: [
       {
         path: "Home",
-        element: <MapPage />,
+        element:<MapPage />,
       },
       {
         path: "PageAnnonce",
@@ -50,8 +52,14 @@ const router = createBrowserRouter([
         path: "PageParking",
         element: <PageParking />,
       },
+      
     ],
+   
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "login",
+    element: <LoginForm />
   },
 ]);
 export default router;
