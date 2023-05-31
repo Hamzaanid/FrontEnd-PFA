@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Appbar from "./AppBar.js";
 import SideBar from "./Side-bar.js";
-
 import { Outlet, useNavigate } from "react-router-dom";
 const drawerWidth = 240;
 
@@ -56,8 +55,7 @@ export default function ResponsiveDrawer() {
                 }}
             >
                 <Toolbar />
-
-                <Outlet />
+                <Outlet/>
 
             </Box>
         </Box>

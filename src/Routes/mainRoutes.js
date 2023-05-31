@@ -12,12 +12,12 @@ import PageListReclamation from "../pages/reclamation/Page-list-reclamation.js";
 import PageParking from "../pages/parking/Page-Parking.js";
 
 import RequireAuth from "../Compenents/Auth/requireAuth.js";
-import Layout from "../Layouts/user/layout.js";
+import Layout from "../Layouts/layout.js";
 import LoginForm from "../pages/Authentication/Login.js";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RequireAuth><Layout /></RequireAuth>,
+    element: <RequireAuth><Layout/></RequireAuth>,
     children: [
       {
         path: "Home",

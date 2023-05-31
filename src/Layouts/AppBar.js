@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
-import Logoutpopup from "../../Compenents/Auth/Logoutpopup.js";
+import Logoutpopup from "../Compenents/Auth/Logoutpopup.js";
 export default function Appbar({ drawerwidth, handleDrawerToggle }) {
   const [open, setOpen] = React.useState(false);
 

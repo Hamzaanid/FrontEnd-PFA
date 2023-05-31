@@ -23,7 +23,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard({title,Details}) {
+export default function RecipeReviewCard({ title, Details }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -31,7 +31,7 @@ export default function RecipeReviewCard({title,Details}) {
   };
 
   return (
-    <Card sx={{m:1}}>
+    <Card sx={{ m: 1 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -41,18 +41,14 @@ export default function RecipeReviewCard({title,Details}) {
         action={
           <Box>
             <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
-          <IconButton aria-label="Traiter" sx={{marginLeft: "auto",color:"black"}}>
-          <TaskAltIcon />
-        </IconButton>
+              expand={expanded}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </ExpandMore>
           </Box>
-          
         }
         title={title}
         subheader="September 14, 2016"
@@ -60,8 +56,13 @@ export default function RecipeReviewCard({title,Details}) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>
-            {Details}
-          </Typography>
+            {Details} 
+          <IconButton
+              aria-label="Traiter"
+              sx={{ marginLeft: 1, color: "black" }}
+            >
+              <TaskAltIcon />
+            </IconButton></Typography>
         </CardContent>
       </Collapse>
     </Card>

@@ -9,7 +9,8 @@ import ListItemText from "@mui/material/ListItemText";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import { useLocation } from 'react-router-dom';
-import logoEnsias from './../../assets/final.png';
+import logoEnsias from './../assets/final.png';
+// import { useAuth } from "../../Compenents/Auth/auth";
 import {
   SubjectOutlined,
   LocalParkingRounded,
@@ -31,6 +32,7 @@ export default function SideBar({
   variant,
 }) {
   const location = useLocation();
+  // const authData = useAuth();
   const menuItem = [
     {
       text: "Home",
@@ -47,7 +49,7 @@ export default function SideBar({
       icon: <HomeWork color="dark" />,
       path: "/residence",
     },
-    {
+    { 
       text: "Service Internat",
       icon: <LocationCityRounded color="dark" />,
       path: "/PageInternat",
@@ -60,7 +62,7 @@ export default function SideBar({
     },
     {
       text: "ListeReclamations",
-      icon: <AssignmentLate color="dark" />,
+      icon: <AssignmentLate color="dark"/>,
       path: "/ListeReclamations",
     },
     {
