@@ -5,12 +5,10 @@ import ListItem from "@mui/material/ListItem";
 import Box from "@mui/material/Box";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-// import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import { useLocation } from 'react-router-dom';
 import logoEnsias from './../assets/final.png';
-// import { useAuth } from "../../Compenents/Auth/auth";
 import {
   SubjectOutlined,
   LocalParkingRounded,
@@ -32,7 +30,6 @@ export default function SideBar({
   variant,
 }) {
   const location = useLocation();
-  // const authData = useAuth();
   const menuItem = [
     {
       text: "Home",
