@@ -8,8 +8,11 @@ import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer.js";
 
 
 // import LayerCompenent from "../Compenents/MapComponent/LayerCompenent.js";
-import LayerGraphicsWidgets from "../Compenents/MapComponent/LayerGrapicsWidget.js";
-
+import LayerGrapicsWidget from "../Compenents/MapComponent/LayerGrapicsWidget.js";
+import LayerGraphicsParking from "../Compenents/MapComponent/LayerGraphicsParking.js";
+import LayerGraphicsServices from "../Compenents/MapComponent/LayerGraphicsServices.js";
+import LayerGraphicsAdministration from "../Compenents/MapComponent/LayerGraphicsAdministration.js";
+import LayerGraphicsClasses from "../Compenents/MapComponent/LayerGraphicsClasses.js";
 function MapService() {
   const mapDiv = useRef(null);
   const [View, SetView] = useState(null);
@@ -26,8 +29,11 @@ function MapService() {
     const layerClasses = new GraphicsLayer({
       id: "classes",
     });
-    const layerTerraian = new GraphicsLayer({
-      id: "terrain",
+    const layerServices = new GraphicsLayer({
+      id: "Services",
+    });
+    const layerAdministration = new GraphicsLayer({
+      id: "Administration",
     });
     // test 
     
@@ -35,7 +41,7 @@ function MapService() {
       container: mapDiv.current,
       map: new Map({
         basemap: "arcgis-imagery",
-        layers: [layerInternat, layerParking,layerClasses,layerTerraian],
+        layers: [layerInternat, layerParking,layerClasses,layerServices,layerAdministration],
       }),
       center: [ -6.867727066,33.98306101],
       zoom: 18,
@@ -49,10 +55,17 @@ function MapService() {
 
   return (
     <div ref={mapDiv} style={{ height: "100vh", width: "100%" }}>
-      {View 
-      // && <LayerCompenent View={View} />
-       && 
-       <LayerGraphicsWidgets  View={View}/>
+      {
+      View 
+       &&
+       <>
+          <LayerGrapicsWidget  View={View}/>
+          <LayerGraphicsAdministration  View={View}/>
+          <LayerGraphicsClasses  View={View}/>
+          <LayerGraphicsParking View={View} />
+          <LayerGraphicsServices View={View} />
+       </>
+       
        }
     </div>
   );

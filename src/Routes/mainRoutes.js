@@ -10,7 +10,7 @@ import Residence from "../pages/internat/residence.js";
 import PageReclamation from "../pages/reclamation/Page-Reclamation.js";
 import PageListReclamation from "../pages/reclamation/Page-list-reclamation.js";
 import PageParking from "../pages/parking/Page-Parking.js";
-
+import GestionUsers from "../pages/Users/page-Gestion.js";
 import RequireAuth from "../Compenents/Auth/requireAuth.js";
 import Layout from "../Layouts/layout.js";
 import LoginForm from "../pages/Authentication/Login.js";
@@ -51,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "PageParking",
         element: <PageParking />,
+      },
+      {
+        path: "GestionUsers",
+        element: <GestionUsers />,
       },
       
     ],

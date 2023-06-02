@@ -25,7 +25,10 @@ const LoginForm = () => {
     event.preventDefault();
     if(email && password)
     {
-      auth.login({ email: email, password: password });
+      if(password === "123")
+          auth.login({ email: email, password: password,role:"admin" });
+      else 
+          auth.login({ email: email, password: password,role:"user" });
       setEmail("");
       setPassword("");
       navigate(redirectPath, { replace: true });
