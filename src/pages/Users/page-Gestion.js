@@ -63,10 +63,21 @@ const GestionUsers = () => {
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.email}</TableCell>
                 <TableCell>
-                  <Button variant="outlined" size="small" onClick={() => handleEditUser(user)}>
+                  <Button sx={{
+                    bgcolor:"black",
+                    color:"#ffffff",
+                    mr:1,
+                    '&:hover':{bgcolor:"#8A5858",}
+                  }}
+                  variant="outlined" size="small" onClick={() => handleEditUser(user)}>
                     Modifier
                   </Button>
-                  <Button  variant="outlined" size="small" onClick={() => handleDeleteUser(user.id)}>
+                  <Button  sx={{
+                    bgcolor:"black",
+                    color:"#ffffff",
+                    '&:hover':{bgcolor:"#8A5858",}
+                  }}
+                  variant="outlined" size="small" onClick={() => handleDeleteUser(user.id)}>
                     Supprimer
                   </Button>
                 </TableCell>
@@ -111,10 +122,10 @@ const GestionUsers = () => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleSaveChanges} variant="contained" color="primary">
+          <Button onClick={handleSaveChanges} variant="contained">
             Sauvegarder
           </Button>
-          <Button onClick={handleClosePopup} variant="outlined" color="secondary">
+          <Button onClick={handleClosePopup} variant="contained">
             Annuler
           </Button>
         </DialogActions>

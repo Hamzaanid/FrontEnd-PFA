@@ -7,9 +7,12 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import PeopleIcon from '@mui/icons-material/People';
-import { useLocation } from 'react-router-dom';
-import logoEnsias from './../assets/final.png';
+import PeopleIcon from "@mui/icons-material/People";
+// import ItemSidBar from "./itemSideBar.js";
+
+import { useLocation } from "react-router-dom";
+import logoEnsias from "./../assets/final.png";
+import { useAuth } from "../Compenents/Auth/auth.js";
 import {
   SubjectOutlined,
   LocalParkingRounded,
@@ -18,10 +21,8 @@ import {
   AddBoxRounded,
   DoNotDisturbOnRounded,
   AssignmentLate,
-  HomeWork
+  HomeWork,
 } from "@mui/icons-material";
-
-// import useAuth from "../Compenents/Auth/auth";
 
 export default function SideBar({
   drawerWidth,
@@ -32,63 +33,63 @@ export default function SideBar({
   variant,
 }) {
   const location = useLocation();
-  // const auth = useAuth();
+  const auth = useAuth();
 
   const menuItem = [
     {
       text: "Home",
       icon: <SubjectOutlined color="dark" />,
       path: "/Home",
-      role:'user'
+      role: "user",
     },
     {
       text: "Service Parking",
       icon: <LocalParkingRounded color="dark" />,
       path: "/PageParking",
-      role:'user'
+      role: "user",
     },
     {
       text: "residence",
       icon: <HomeWork color="dark" />,
       path: "/residence",
-      role:'user'
+      role: "user",
     },
-    { 
+    {
       text: "Service Internat",
       icon: <LocationCityRounded color="dark" />,
       path: "/PageInternat",
-      role:'admin'
+      // role:'admin'
     },
-    
+
     {
       text: "Reclamation",
       icon: <DoNotDisturbOnRounded color="dark" />,
       path: "/pageReclamation",
-      role:'user'
+      role: "user",
     },
     {
       text: "ListeReclamations",
-      icon: <AssignmentLate color="dark"/>,
+      icon: <AssignmentLate color="dark" />,
       path: "/ListeReclamations",
-      role:'admin'
+      // role:'admin'
     },
     {
       text: "consulter Annoncement",
       icon: <AnnouncementRounded color="dark" />,
       path: "/PageAnnonce",
-      role:'user'
+      role: "user",
     },
     {
       text: "Annoncement",
       icon: <AddBoxRounded color="dark" />,
       path: "/PageAddAnnonce",
-      role:'admin'
+      // role:'admin'
     },
     {
       text: "Gestion users",
       icon: <PeopleIcon color="dark" />,
       path: "/GestionUsers",
-      role:'admin'
+      // role:'admin'
     },
   ];
   const drawer = (
@@ -96,10 +97,22 @@ export default function SideBar({
       <List>
         <ListItem dense>
           <Box
-          sx={{border:"none", mb:2}}
+            sx={{
+              border: "none",
+              mb: 2,
+              
+            }}
           >
-            <Card sx={{maxWidth: 70,border:"none" }}>
-              <CardMedia sx={{ maxWidth: 70,border:"none" }}
+            <Card
+              sx={{
+                maxWidth: drawerWidth,
+                border: "none",
+                // bgcolor: "black",
+                // color: "#fff",
+              }}
+            >
+                <CardMedia
+                sx={{ maxWidth: 70, border: "none" }}
                 component="img"
                 src={logoEnsias}
                 alt="My Image"
@@ -107,22 +120,54 @@ export default function SideBar({
             </Card>
           </Box>
         </ListItem>
-        {menuItem.map((item) => (
-          
-          <ListItem
-          dense
-          sx={{backgroundColor: location.pathname === item.path ? "#384358" : ""}}
-            button
-            key={item.text}
-            onClick={() => {
-              handleDrawerToggle();
-              return navigate(item.path);
-            }}
-          >
-            <ListItemIcon sx={{color:"#fe1929"}}>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.text} ></ListItemText>
-          </ListItem>
-        ))}
+        {menuItem.map((item, index) => {
+          if (auth.user.role === "user")
+            return (
+              <div key={index}>
+                {item.role && (
+                  <ListItem
+                    dense
+                    sx={{
+                      backgroundColor:
+                        location.pathname === item.path ? "#384358" : "",
+                    }}
+                    button
+                    key={index}
+                    onClick={() => {
+                      handleDrawerToggle();
+                      return navigate(item.path);
+                    }}
+                  >
+                    <ListItemIcon sx={{ color: "#fe1929" }}>
+                      {item.icon}
+                    </ListItemIcon>
+                    <ListItemText primary={item.text}></ListItemText>
+                  </ListItem>
+                )}
+              </div>
+            );
+          else
+            return (
+              <ListItem
+                dense
+                sx={{
+                  backgroundColor:
+                    location.pathname === item.path ? "#384358" : "",
+                }}
+                button
+                key={index}
+                onClick={() => {
+                  handleDrawerToggle();
+                  return navigate(item.path);
+                }}
+              >
+                <ListItemIcon sx={{ color: "#fe1929" }}>
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.text}></ListItemText>
+              </ListItem>
+            );
+        })}
       </List>
     </div>
   );

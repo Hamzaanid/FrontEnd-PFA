@@ -14,6 +14,7 @@ import GestionUsers from "../pages/Users/page-Gestion.js";
 import RequireAuth from "../Compenents/Auth/requireAuth.js";
 import Layout from "../Layouts/layout.js";
 import LoginForm from "../pages/Authentication/Login.js";
+import SignUpForm from "../pages/Authentication/Sign-up.js";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
   {
     path: "login",
     element: <LoginForm />
+  },
+  {
+    path: "inscription",
+    element: <SignUpForm />
   },
 ]);
 export default router;

@@ -1,85 +1,83 @@
-import React from "react";
-import { useState } from "react";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
+import * as React from "react";
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import CreateReclamation from "../../Compenents/Reclamation/create-reclamation.js";
+import SuiviReclamation from "../../Compenents/Reclamation/suiviReclamation.js";
 
-export default function PageReclamation() {
-  // const navigate = useNavigate()
-  const [title, setTitle] = useState("");
-  const [Details, setDetails] = useState("");
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    </div>
+  );
+}
 
-    if (title && Details) {
-      const Reclamation = {
-        title: title,
-        details: Details,
-      };
-      console.log(Reclamation);
-    }
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+
+export default function BasicTabs() {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
 
   return (
-    <Container>
-      <Typography
-        variant="h6"
-        color="textSecondary"
-        component="h2"
-        gutterBottom
-      >
-        Add Reclamation
-      </Typography>
+    <Box sx={{ width: "100%" }}>
       <Box
-        component="form"
         sx={{
-          //'& > :not(style)': { m: 1, width: '60%' },
-          ".MuiTextField-root": { m: 1 },
-          ".MuiButton-root": { m: 1, px: 1 },
-          mr: { lg: "50%", sm: "35%", xs: 0 },
+          borderBottom: 1,
+          borderColor: "divider",
         }}
-        noValidate
-        autoComplete="off"
-        onSubmit={handleSubmit}
       >
-        <TextField
-          size="small"
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-          label="Reclamation Title"
-          color="secondary"
-          variant="outlined"
-          fullWidth
-          required
-        ></TextField>
-        <TextField
-          size="small"
-          onChange={(e) => {
-            setDetails(e.target.value);
-          }}
-          label="Details"
-          color="secondary"
-          variant="outlined"
-          multiline
-          rows={3}
-          fullWidth
-          required
-        ></TextField>
-        <Button
-          size="small"
-          type="submit"
-          sx={{
-            backgroundColor: "black",
-          }}
-          variant="contained"
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
         >
-          envoyer
-        </Button>
+          <Tab
+            label="Reclamer"
+            {...a11yProps(0)}
+            sx={{
+              backgroundColor: value === 0 ? "black" : "initial",
+            }}
+          />
+          <Tab
+            label="Suivi les Reclamation"
+            {...a11yProps(1)}
+            sx={{
+              backgroundColor: value === 1 ? "black" : "initial",
+            }}
+          />
+        </Tabs>
       </Box>
-    </Container>
+      <TabPanel value={value} index={0}>
+        <CreateReclamation />
+      </TabPanel>
+
+      <TabPanel value={value} index={1}>
+        <SuiviReclamation />
+      </TabPanel>
+    </Box>
   );
 }

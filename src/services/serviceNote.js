@@ -1,24 +1,29 @@
 import axios from 'axios';
-const api = {
-    AddNote: async (Note) => {
-        const URL = '/Note/addNote';
-        return await axios.post(URL,Note)
+const apiReclamation = {
+    createReclamation: async (reclamation) => {
+        const URL = '/reclamation/create';
+        return await axios.post(URL,reclamation)
             .then((res) => res)
             .catch((err) => err)
     },
 
-    getALLNotes: async () =>{
-        return await axios.get('/Note')
+    getALLReclamations: async () =>{
+        return await axios.get('/reclamations')
             .then((res) => res)
             .catch((err) => err)
     },
 
-    DeleteNote :  async (id) =>{
-        axios.delete('/Note/deleteNote/' + id)
+    Traited :  async (id) =>{
+        axios.put('/reclamations/Traited/' + id)
+            .then(rep => rep)
+            .catch(err => err);
+    },
+
+    AllTraited :  async (id) =>{
+        axios.get('/reclamations/AllTraited')
             .then(rep => rep)
             .catch(err => err);
     }
-
 }
 
-export default api;
+export default apiReclamation;

@@ -8,12 +8,8 @@ import Collapse from "@mui/material/Collapse";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import toDate from "../../utils/forDate.js";
-
-import axios from "axios";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -26,28 +22,17 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard({item,handlTraited}) {
+export default function RecipeReviewCard({ item }) {
   const [expanded, setExpanded] = React.useState(false);
-  const idItem = item.id;
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  const Traited = ()=>{
-    axios.put('/reclamations/Traited/' + idItem)
-            .then( (res) => {
-                console.log("traited");
-            })
-            .catch((err) => {
-                console.log("check connexion");
-            })
-      handlTraited();
-  }
 
   return (
     <Card sx={{ m: 1 }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: "green" }} aria-label="recipe">
             R
           </Avatar>
         }
@@ -64,20 +49,11 @@ export default function RecipeReviewCard({item,handlTraited}) {
           </Box>
         }
         title={item.title}
-        subheader={toDate(item.createdAt)}
+        subheader={toDate(item.updatedAt)}
       />
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>
-            {item.detail} 
-          
-          <IconButton
-              aria-label="Traiter"
-              sx={{ marginLeft: 1, color: "black" }}
-              onClick={Traited}
-            >
-              <TaskAltIcon />
-            </IconButton></Typography>
+          <Typography paragraph>{item.detail}</Typography>
         </CardContent>
       </Collapse>
     </Card>

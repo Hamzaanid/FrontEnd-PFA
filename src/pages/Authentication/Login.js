@@ -7,10 +7,13 @@ import CardMedia from "@mui/material/CardMedia";
 import Toolbar from "@mui/material/Toolbar";
 import AppBar from "@mui/material/AppBar";
 import Alert from "@mui/material/Alert";
+import Link from '@mui/material/Link';
 import CloseIcon from "@mui/icons-material/Close"
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+// import ImgBack from "../../assets/finalBackground.jpeg";
 import logoEnsias from "../../assets/final.png";
+import CardActions  from "@mui/material/CardActions";
 const LoginForm = () => {
   const auth = useAuth();
   const navigate = useNavigate();
@@ -45,6 +48,7 @@ const LoginForm = () => {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
+        // background:"url("+ImgBack+")"
       }}
     >
       <Card variant="outlined" sx={{ m: 1 }}>
@@ -88,7 +92,7 @@ const LoginForm = () => {
           </AppBar>
         </Box>
 
-        <CardContent sx={{bgcolor:"#faeaec"}}>
+        <CardContent sx={{bgcolor:"#faeaec",height:"90%"}}>
           <form
             onSubmit={handleSubmit}
             sx={{
@@ -126,6 +130,18 @@ const LoginForm = () => {
             </Button>
           </form>
         </CardContent>
+        <CardActions sx={{bgcolor:"#faeaec"}}>
+        <Link
+  component="button"
+  variant="body1"
+  onClick={() => {
+    return navigate("/inscription",{replace:true});
+  }
+  }
+>
+  inscription
+</Link>
+      </CardActions>
       </Card>
     </div>
   );
