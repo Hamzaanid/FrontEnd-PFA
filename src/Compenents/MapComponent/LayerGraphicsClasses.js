@@ -8,8 +8,8 @@ import { useNavigate } from 'react-router-dom';
 const Layer = ({View}) => {
   const navigate = useNavigate();
   const [attribute, setAttribute] = useState({
-    Nom: "",
-    Capacite: "",
+    name: "",
+    description: "",
   });
   const [open, setOpen] = React.useState(false);
 
@@ -54,22 +54,18 @@ const Layer = ({View}) => {
         geometry: point,
         symbol: symbol,
         attributes: {
-          Name: infoLayer[i][2],
-          Capacite: infoLayer[i][3],
+          name: infoLayer[i][2],
+          description: infoLayer[i][3],
         },
-        // popupTemplate:{
-        //       title:infoLayer[i][2],
-        //       content: "<button>click</button>"
-        //   }
       });
       layer.add(graphics);
 
       View.on("click", (e) => {
         View.hitTest(e).then((rep) => {
-          if (rep.results.length > 0) {
+          if (rep.results.length > 0 && rep.results[0].layer.id === 'classes') {
             setAttribute({
-              Nom: rep.results[0].graphic.attributes.Nom,
-              capacite: rep.results[0].graphic.attributes.Capacite
+              name: rep.results[0].graphic.attributes.name,
+              description: rep.results[0].graphic.attributes.description
             });
             handleClickOpen();
           }

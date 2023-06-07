@@ -7,7 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Typography from '@mui/material/Typography';
 
-export default function Popup2({open,close,varOpen,attribute,navigate}) {
+export default function Popup2({close,varOpen,attribute,navigate}) {
 
   return (
     <div>

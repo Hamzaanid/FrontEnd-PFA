@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function Popup({open,close,varOpen,attribute,navigate}) {
+export default function Popup({close,varOpen,attribute,navigate}) {
 
   return (
     <div>
@@ -30,8 +30,7 @@ export default function Popup({open,close,varOpen,attribute,navigate}) {
             }
         }>
           <DialogContentText id="alert-dialog-description">
-           - {attribute.description} <br/>
-           - none
+           {attribute.description}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

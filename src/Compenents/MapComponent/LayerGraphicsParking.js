@@ -64,7 +64,8 @@ const Layer = ({ View }) => {
 
       View.on("click", (e) => {
         View.hitTest(e).then((rep) => {
-          if (rep.results.length > 0) {
+          if (rep.results.length > 0 && rep.results[0].layer.id === 'parking') {
+            console.log(rep)
             setAttribute({
               name: rep.results[0].graphic.attributes.name,
               description: rep.results[0].graphic.attributes.description

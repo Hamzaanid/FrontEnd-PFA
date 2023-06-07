@@ -1,22 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import io from 'socket.io-client';
 import { Typography, Card, CardContent } from '@mui/material';
-
-// const socket = io('http://localhost:3000'); // URL du serveur Socket.IO
-
+const socket = io('');
 const ParkingPage = () => {
-//   const [parkingData, setParkingData] = useState(null);
+  const initialState = {
+    num_available_spots: 0,
+    total_spots : 396
+  };
+  const [dataPython,setDataPython]= useState(initialState)
+  useEffect(() => {
+    socket.on('connect', () => {
+        console.log('Connected to server');
+      });
+    socket.on('newMessage', (data) => {
+      if(dataPython.num_available_spots !== data.num_available_spots){
+        setDataPython({
+            num_available_spots:data.num_available_spots,
+            total_spots : data.total_spots
+          });
+        }
+    });
 
-  // useEffect(() => {
-  //   // Écouter les mises à jour des données de parking depuis le serveur Socket.IO
-  //   socket.on('parkingUpdate', (data) => {
-  //     setParkingData(data);
-  //   });
-
-  //   // Nettoyage de l'écouteur lors du démontage du composant
-  //   return () => {
-  //     socket.off('parkingUpdate');
-  //   };
-  // }, []);
+    socket.on('disconnect', () => {
+      console.log('Disconnected from server');
+    });
+  }, [dataPython]);
 
   const currentDate = new Date().toLocaleDateString();
 
@@ -28,10 +36,10 @@ const ParkingPage = () => {
             Date : {currentDate}
           </Typography>
           <Typography variant="h6" sx={{bgcolor:'#87D08D',p:2}} gutterBottom>
-            Places Libres : {20}
+            Places Libres : {dataPython.num_available_spots}
           </Typography>
           <Typography variant="h6" sx={{bgcolor:'red',p:2}}>
-            Places Occupées : {30}
+            Places Occupées : {dataPython.total_spots - dataPython.num_available_spots}
           </Typography>
           {/* <Typography variant="body1" gutterBottom>
             Pourcentage d'Occupation : {occupancyPercentage}%

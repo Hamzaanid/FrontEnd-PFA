@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 const Layer = ({View}) => {
   const navigate = useNavigate();
   const [attribute, setAttribute] = useState({
-    Nom: "",
+    name: "",
     Description: "",
   });
   const [open, setOpen] = React.useState(false);
@@ -51,7 +51,7 @@ const Layer = ({View}) => {
         geometry: point,
         symbol: symbol,
         attributes: {
-          Nom: infoLayer[i][2],
+          name: infoLayer[i][2],
           Description: infoLayer[i][3],
         },
         // popupTemplate:{
@@ -63,7 +63,7 @@ const Layer = ({View}) => {
 
       View.on("click", (e) => {
         View.hitTest(e).then((rep) => {
-          if (rep.results.length > 0) {
+          if (rep.results.length > 0 && rep.results[0].layer.id === 'Services') {
             setAttribute({
               name: rep.results[0].graphic.attributes.name,
               description: rep.results[0].graphic.attributes.description

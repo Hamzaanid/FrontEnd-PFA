@@ -59,10 +59,12 @@ function MapService() {
       View 
        &&
        <>
+          <LayerGraphicsParking View={View} />
           <LayerGrapicsWidget  View={View}/>
+                    
           <LayerGraphicsAdministration  View={View}/>
           <LayerGraphicsClasses  View={View}/>
-          <LayerGraphicsParking View={View} />
+          
           <LayerGraphicsServices View={View} />
        </>
        
